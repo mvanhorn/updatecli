@@ -74,7 +74,9 @@ builds:
   - id: updatecli
     env:
       - CGO_ENABLED=0
-    main: ./main.go
+    # Build the package, not main.go alone. Go links rsrc_windows_*.syso
+    # only when those objects are part of the package build.
+    main: .
     binary: updatecli
     ldflags:
       - -w -s
