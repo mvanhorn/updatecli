@@ -4,6 +4,7 @@
 package main
 
 import (
+	"bytes"
 	"debug/pe"
 	"encoding/binary"
 	"fmt"
@@ -63,6 +64,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	manifest = bytes.ReplaceAll(manifest, []byte("\r\n"), []byte("\n"))
 	for _, arch := range []struct {
 		name                string
 		machine, relocation uint16
